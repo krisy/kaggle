@@ -3,7 +3,7 @@ from statistics import Statistics
 from segmenter import Segmenter
 
 print 'Running Reader ...'
-data = Reader.Reader().readCSV()
+data = Reader.Reader().setLocation('../csv/train.csv').readCSV()
 
 
 print 'Running Statistics ...'
