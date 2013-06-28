@@ -6,7 +6,6 @@ class Segmenter(object):
     '''
     
     nrItemsInSegment =1
-    nrOfSegments =1
     data = None
 
     def Segmenter(self):
@@ -16,27 +15,26 @@ class Segmenter(object):
         self.nrItemsInSegment = nrItemsInSegment
         return self
     
-    def setNrOfSegments(self, nrOfSegments):
-        self.nrOfSegments = nrOfSegments
-        return self
-    
     def setData(self, data):
         self.data = data
         return self
     
+    '''
+    Generate a list with 2 elements in it:
+    - the first element is a random segment of self.data
+    - the second element is all the remaining data
+    '''
     def generateSegment(self):
         print '\tGenerating segment ...'
         
         ret =[]
 
-        for segmentNr in range(self.nrOfSegments):
-            shuffeledData = np.random.permutation(self.data)
-            segment = shuffeledData[:self.nrItemsInSegment,:]
-            segmentData =  []
-            segmentData.append(segment)
-            segmentData.append(self.data)
-            ret.append(segmentData)
-        
+        shuffeledData = np.random.permutation(self.data)
+        segment = shuffeledData[:self.nrItemsInSegment,0:]
+        ret.append(segment)
+        complementSegment =self.data[self.nrItemsInSegment:,0:] 
+        ret.append(complementSegment)
+            
         print '\tSegments generated!'
         return ret
     
